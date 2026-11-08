@@ -3,8 +3,8 @@
 #include "driver/gpio.h"
 #include "driver/spi_master.h"
 
-// LCDWiki ES3C28P pin map. Every pin here is from the table in CLAUDE.md
-// (checked against the vendor schematic). Do not add pins that are not there.
+// LCDWiki ES3C28P pin map. Every pin here was checked against the vendor
+// schematic. Do not add pins that are not there.
 
 // LCD: ILI9341 on SPI, landscape 320x240
 #define BOARD_LCD_SPI_HOST   SPI2_HOST

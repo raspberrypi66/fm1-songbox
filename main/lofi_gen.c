@@ -1,5 +1,4 @@
-// Generative lo-fi hip hop composer. See "Generative lo-fi hip hop mode" in
-// CLAUDE.md for the musical rules this file implements.
+// Generative lo-fi hip hop composer.
 //
 // The stream is a chain of complete pieces. A piece is planned from its
 // number alone (tempo, key, progressions, key lift, motif, starting patterns)

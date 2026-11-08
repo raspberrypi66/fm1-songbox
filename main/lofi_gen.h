@@ -1,7 +1,6 @@
 #pragma once
 
-// Generative lo-fi hip hop composer (see "Generative lo-fi hip hop mode" in
-// CLAUDE.md). Plain C, no ESP-IDF calls. The stream is an endless chain of
+// Generative lo-fi hip hop composer. Plain C, no ESP-IDF calls. The stream is an endless chain of
 // complete pieces; a piece is fully determined by its number (0..9999) and
 // the next number follows deterministically from the current one, so a run
 // is reproducible from its first piece number. Events are pulled in tick
