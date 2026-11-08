@@ -1,0 +1,47 @@
+FM-1 Song Box - background plate brief for an image generator (Gemini etc.)
+==========================================================================
+
+Only ONE layer comes from the generator: the background plate (skin_bg).
+Buttons, the selected-row card, all text, values, icons and status are drawn
+live by the firmware on top of it, so they must NOT be in the image.
+
+1. Attach assets/skin/layout_guide.png (1280x960) as the reference image.
+   Attach assets/skin/skin_bg.png too if you want "same layout, new style".
+
+2. Prompt (edit the style words, keep the rules):
+
+   Restyle this reference into the background of a premium hardware music
+   device screen. Landscape 4:3, 1280x960. Keep every shape exactly where it
+   is and the same size: a thin strip across the top, a large dark area in the
+   middle, a raised panel across the bottom containing two recessed pill-shaped
+   wells (left and right) and one recessed round socket between them.
+   Style: dark premium synthesizer control panel, deep navy-black, a soft
+   violet stage light glowing upward from behind the round socket, brushed dark
+   aluminium bottom panel with a thin lit top edge, glassy top strip, subtle
+   depth and bevels, cinematic but calm.
+   Strict rules: no text, no letters, no numbers, no icons, no symbols, no
+   buttons, no logos, no watermark. The middle area must stay very dark and
+   low-detail because white text is drawn on it. No fine repeating texture.
+
+3. Geometry the firmware expects (screen pixels at 320x240; x4 at 1280x960):
+   top strip      y 0..28, full width (logo at left, status pill at right go on top)
+   list area      y 28..172 - keep dark; text spans x 8..312
+   bottom panel   y 172..240
+   captions       y 178..193 above each well ("TEMPO", "TRANSPOSE") - keep plain
+   left well      x 8..124,  y 196..234, fully rounded ends (radius 19)
+   right well     x 196..312, y 196..234, fully rounded ends
+   round socket   centre (160, 206), radius 30 (the 52 px play button sits in it)
+
+4. Import:
+   - Save the result as assets/skin/skin_bg_art.<png|jpg|jfif|webp>
+     (any 4:3 size; it is downscaled). While that file exists it replaces the
+     procedural plate; delete it to go back.
+   - python tools/ui_assets/make_assets.py
+   - python tools/ui_preview/render.py   -> check docs/ui/*.png: wells and
+     socket must line up with the steppers and the play button
+   - idf.py build
+
+Notes: the panel is 16-bit colour. Smooth gradients are fine (the converter
+dithers them); very fine detail turns to noise at 320x240. Generators rarely
+hit exact positions, so expect to nudge the image (or re-roll) until the
+wells and socket line up in the preview.

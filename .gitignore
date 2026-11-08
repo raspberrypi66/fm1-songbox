@@ -1,0 +1,22 @@
+# ESP-IDF build output and fetched components (idf.py build recreates them)
+build/
+managed_components/
+sdkconfig.old
+
+# Local build/flash/serial logs (they contain device addresses)
+*.log
+/flash*.txt
+/build*.txt
+
+# Python
+__pycache__/
+*.pyc
+
+# Host UI preview build (tools/ui_preview/render.py)
+tools/ui_preview/build/
+
+# Local only
+CLAUDE.md
+.claude/
+songs/pocket_neon.mid
+songs/Timing Test.mid
